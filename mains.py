@@ -32,7 +32,12 @@ stc.html(html_temp)
 # df_original.to_pickle('kbars_2330_2022-01-01-2022-11-18.pkl')
 
 ## 读取Pickle文件
-df_original = pd.read_pickle('kbars_2330_2022-01-01-2022-11-18.pkl')
+@st.cache_data(tt1=3600,show_spinner="正在加載資料...")
+def load_data(ur1):
+	df = pd.read_pickle(ur1)
+	return df
+df_original = load_data("kbars_2330_2022-01-01-2022-11-18.pkl")	
+#df_original = pd.read_pickle('kbars_2330_2022-01-01-2022-11-18.pkl')
 
 
 #df.columns  ## Index(['Unnamed: 0', 'time', 'open', 'low', 'high', 'close', 'volume','amount'], dtype='object')
